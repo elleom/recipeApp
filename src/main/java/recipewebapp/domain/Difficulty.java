@@ -1,4 +1,4 @@
-package com.lm.recipewebapp.domain;
+package recipewebapp.domain;
 
 /**
  * @author el_le

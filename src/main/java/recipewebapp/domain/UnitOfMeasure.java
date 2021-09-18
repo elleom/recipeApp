@@ -1,4 +1,4 @@
-package com.lm.recipewebapp.domain;
+package recipewebapp.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
