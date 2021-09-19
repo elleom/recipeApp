@@ -16,6 +16,8 @@ public class UnitOfMeasure {
     private Long id;
 
     @OneToOne
+    private Recipe recipe;
+
     private String description;
 
     public Long getId() {
