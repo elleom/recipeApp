@@ -5,7 +5,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 import recipewebapp.domain.*;
 import recipewebapp.repositories.CategoryRepository;
-import recipewebapp.repositories.RecipesRepository;
+import recipewebapp.repositories.RecipeRepository;
 import recipewebapp.repositories.UnitOfMeasureRepository;
 
 import java.math.BigDecimal;
@@ -20,10 +20,10 @@ import java.util.*;
 public class RecipeBootstrap  implements ApplicationListener<ContextRefreshedEvent> {
 
     private final CategoryRepository categoryRepository;
-    private final RecipesRepository recipeRepository;
+    private final RecipeRepository recipeRepository;
     private final UnitOfMeasureRepository unitOfMeasureRepository;
 
-    public RecipeBootstrap(CategoryRepository categoryRepository, RecipesRepository recipeRepository, UnitOfMeasureRepository unitOfMeasureRepository) {
+    public RecipeBootstrap(CategoryRepository categoryRepository, RecipeRepository recipeRepository, UnitOfMeasureRepository unitOfMeasureRepository) {
         this.categoryRepository = categoryRepository;
         this.recipeRepository = recipeRepository;
         this.unitOfMeasureRepository = unitOfMeasureRepository;

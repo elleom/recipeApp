@@ -1,9 +1,6 @@
 package recipewebapp.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 /**
  * @author el_le
@@ -11,13 +8,10 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class UnitOfMeasure {
+
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @OneToOne
-    private Recipe recipe;
-
     private String description;
 
     public Long getId() {
@@ -32,7 +26,7 @@ public class UnitOfMeasure {
         return description;
     }
 
-    public void setDescription(String uom) {
-        this.description = uom;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
