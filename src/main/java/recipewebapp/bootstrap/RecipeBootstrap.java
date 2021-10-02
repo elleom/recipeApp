@@ -2,6 +2,7 @@ package recipewebapp.bootstrap;
 
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.stereotype.Component;
 import recipewebapp.domain.*;
 import recipewebapp.repositories.CategoryRepository;
 import recipewebapp.repositories.RecipesRepository;
@@ -14,6 +15,8 @@ import java.util.*;
  * @author el_le
  * @since 02/10/2021 22:30
  */
+
+@Component
 public class RecipeBootstrap  implements ApplicationListener<ContextRefreshedEvent> {
 
     private final CategoryRepository categoryRepository;
