@@ -11,7 +11,7 @@ import recipewebapp.service.RecipeService;
 @Controller
 public class IndexController {
 
-   private final RecipeService recipeService;
+    private final RecipeService recipeService;
 
     public IndexController(RecipeService recipeService) {
         this.recipeService = recipeService;
