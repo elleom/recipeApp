@@ -5,5 +5,5 @@ package recipewebapp.domain;
  * @since 18/09/2021 17:18
  */
 public enum Difficulty {
-    EASY, MEDIUM, HARD
+    EASY, MEDIUM, MODERATE, HARD
 }

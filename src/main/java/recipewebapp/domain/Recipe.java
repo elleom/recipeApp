@@ -11,7 +11,7 @@ public class Recipe {
     private Long id;
 
     private String description;
-    private String prepTime;
+    private Integer prepTime;
     private Integer cookTime;
     private Integer servings;
     private String source;
@@ -53,11 +53,11 @@ public class Recipe {
         this.description = description;
     }
 
-    public String getPrepTime() {
+    public Integer getPrepTime() {
         return prepTime;
     }
 
-    public void setPrepTime(String prepTime) {
+    public void setPrepTime(Integer prepTime) {
         this.prepTime = prepTime;
     }
 
