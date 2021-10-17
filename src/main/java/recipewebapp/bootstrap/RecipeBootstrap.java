@@ -9,6 +9,7 @@ import recipewebapp.repositories.CategoryRepository;
 import recipewebapp.repositories.RecipeRepository;
 import recipewebapp.repositories.UnitOfMeasureRepository;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -32,6 +33,7 @@ public class RecipeBootstrap  implements ApplicationListener<ContextRefreshedEve
     }
 
     @Override
+    @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
         recipeRepository.saveAll(getRecipes());
         log.debug("Loading Bootstrap data");
