@@ -1,5 +1,6 @@
 package recipewebapp.bootstrap;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,7 @@ import java.util.*;
  * @since 02/10/2021 22:30
  */
 
+@Slf4j
 @Component
 public class RecipeBootstrap  implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -32,6 +34,7 @@ public class RecipeBootstrap  implements ApplicationListener<ContextRefreshedEve
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         recipeRepository.saveAll(getRecipes());
+        log.debug("Loading Bootstrap data");
     }
 
     private List<Recipe> getRecipes() {
@@ -72,6 +75,7 @@ public class RecipeBootstrap  implements ApplicationListener<ContextRefreshedEve
         Optional<UnitOfMeasure> cupsUomOptional = unitOfMeasureRepository.findByDescription("Cup");
 
         if(!cupsUomOptional.isPresent()){
+            log.debug("UOM not found");
             throw new RuntimeException("Expected UOM Not Found");
         }
 
