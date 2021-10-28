@@ -1,8 +1,15 @@
 package recipewebapp.service;
 
 import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 import recipewebapp.domain.Recipe;
 import recipewebapp.repositories.RecipeRepository;
 
@@ -15,6 +22,7 @@ import static org.mockito.Mockito.*;
  * @author el_le
  * @since 24/10/2021 14:21
  */
+
 class RecipeServiceImplTest {
 
     RecipeService recipeService;
@@ -22,8 +30,9 @@ class RecipeServiceImplTest {
     @Mock
     RecipeRepository recipeRepository;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
+        MockitoAnnotations.initMocks(this);
         recipeService = new RecipeServiceImpl(recipeRepository);
     }
 
