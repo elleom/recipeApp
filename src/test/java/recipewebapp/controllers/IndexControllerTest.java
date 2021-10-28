@@ -22,6 +22,7 @@ import static org.mockito.ArgumentMatchers.anySet;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * @author el_le
@@ -46,8 +47,7 @@ class IndexControllerTest {
     void testMockMVC () throws Exception{
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
         mockMvc.perform(get("/"))
-                .andExpect(status.isOk);
-
+                .andExpect(status().isOk());
     }
 
     @Test
