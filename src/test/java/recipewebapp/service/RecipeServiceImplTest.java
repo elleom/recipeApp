@@ -13,6 +13,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import recipewebapp.domain.Recipe;
 import recipewebapp.repositories.RecipeRepository;
 
+import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -37,15 +39,26 @@ class RecipeServiceImplTest {
     }
 
     @Test
-    public void getRecipes() throws Exception{
+    public void getRecipesTest() throws Exception{
         Recipe recipe = new Recipe();
-        Set<Recipe> recipesData = recipeService.getRecipes();
+        HashSet recipesData = new HashSet();
         recipesData.add(recipe);
 
-        when(recipeRepository.findAll()).thenReturn(recipesData);
+        when(recipeService.getRecipes()).thenReturn(recipesData);
+        Set<Recipe> recipes = recipeService.getRecipes();
 
-        assertEquals(recipesData.size(), 1);
-        verify(recipeRepository, times(0));
+        assertEquals(recipes.size(), 1);
+        verify(recipeRepository, times(1)).findAll();
+        verify(recipeRepository, never()).findById(anyLong());
     }
 
+    @Test
+    void getRecipesByIdTest() {
+        Recipe recipe = new Recipe();
+        recipe.setId(1L);
+        Optional<Recipe> recipeOptional = Optional.of(recipe);
+
+        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+        Recipe recipeReturned = recipeService.findById(1L);
+    }
 }
