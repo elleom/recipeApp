@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import recipewebapp.commands.RecipeCommand;
 import recipewebapp.service.RecipeService;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author el_le
@@ -45,4 +46,13 @@ public class RecipeController {
         RecipeCommand savedCommand = recipeService.saveRecipeCommand(command);
         return "redirect:/recipe/show/" + savedCommand.getId();
     }
+
+    @GetMapping
+    @RequestMapping("recipe/{id}/delete")
+    public String deleteById(@PathVariable String id){
+
+        recipeService.deleteById(Long.valueOf(id));
+        return "redirect:/";
+    }
+
 }
