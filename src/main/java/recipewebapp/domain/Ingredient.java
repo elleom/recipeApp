@@ -1,6 +1,7 @@
 package recipewebapp.domain;
 
 import lombok.*;
+import org.junit.platform.commons.util.ToStringBuilder;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -12,6 +13,7 @@ import java.math.BigDecimal;
 
 @Data
 @EqualsAndHashCode(exclude = {"recipe"})
+@ToString(exclude = {"recipe"})
 @Entity
 public class Ingredient {
 
@@ -43,5 +45,7 @@ public class Ingredient {
 
     public Ingredient() {
     }
+
+
 
 }
