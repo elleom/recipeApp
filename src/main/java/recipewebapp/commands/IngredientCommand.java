@@ -3,6 +3,7 @@ package recipewebapp.commands;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import recipewebapp.domain.Recipe;
 
 import java.math.BigDecimal;
 
@@ -18,4 +19,5 @@ public class IngredientCommand {
     private String description;
     private BigDecimal amount;
     private UnitOfMeasureCommand uom;
+    private Recipe recipeId;
 }

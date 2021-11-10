@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import recipewebapp.service.IngredientService;
 import recipewebapp.service.RecipeService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -17,9 +18,11 @@ import lombok.extern.slf4j.Slf4j;
 public class IngredientController {
 
     private final RecipeService recipeService;
+    private final IngredientService ingredientService;
 
-    public IngredientController(RecipeService recipeService) {
+    public IngredientController(RecipeService recipeService, IngredientService ingredientService) {
         this.recipeService = recipeService;
+        this.ingredientService = ingredientService;
     }
 
     @GetMapping
@@ -34,12 +37,12 @@ public class IngredientController {
     }
 
     @GetMapping
-    @RequestMapping("/recipe/{recipeId}/ingredients/{ingredientId}")
-    public String viewIngredient(@PathVariable String recipeId, @PathVariable String ingredientId, Model model) {
+    @RequestMapping("/recipe/{recipeId}/ingredient/{ingredientId}/show")
+    public String viewIngredient(@PathVariable String recipeId,
+                                 @PathVariable String ingredientId,
+                                 Model model) {
         log.debug("Getting Ingredient with id:" + ingredientId);
-        model.addAttribute("ingredient", recipeService.findCommandById(Long.valueOf(recipeId))
-                .getIngredients()
-                .stream().filter(ingredient -> ingredient.getId() == Long.valueOf(ingredientId)).findFirst());
+        model.addAttribute("ingredient", ingredientService.findByRecipeIdAndIngredientId(Long.valueOf(recipeId), Long.valueOf(ingredientId)) );
         return "recipe/ingredient/show";
     }
 }
