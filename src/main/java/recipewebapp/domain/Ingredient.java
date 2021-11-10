@@ -12,6 +12,8 @@ import java.math.BigDecimal;
  */
 
 @Data
+@Setter
+@Getter
 @EqualsAndHashCode(exclude = {"recipe"})
 @ToString(exclude = {"recipe"})
 @Entity

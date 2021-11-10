@@ -5,7 +5,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import recipewebapp.commands.RecipeCommand;
 import recipewebapp.service.RecipeService;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author el_le
