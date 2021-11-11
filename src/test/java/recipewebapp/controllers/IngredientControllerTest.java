@@ -60,19 +60,6 @@ class IngredientControllerTest {
     }
 
     @Test
-    void viewIngredient() throws Exception {
-        //given
-        RecipeCommand command = new RecipeCommand();
-        when(recipeService.findCommandById(anyLong())).thenReturn(command);
-        //when
-        mockMvc.perform(get("/recipe/1/ingredients/1/show")).andExpect(status().isOk())
-                .andExpect(view().name("recipe/ingredient/show"))
-                .andExpect(model().attributeExists("ingredient"));
-        //then
-        verify(recipeService, times(1)).findCommandById(anyLong());
-    }
-
-    @Test
     public void testUpdateIngredientForm() throws Exception {
         //given
         IngredientCommand ingredientCommand = new IngredientCommand();

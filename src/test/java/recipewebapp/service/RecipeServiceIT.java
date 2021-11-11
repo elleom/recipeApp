@@ -1,10 +1,10 @@
 package recipewebapp.service;
 
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import recipewebapp.commands.RecipeCommand;
 import recipewebapp.converters.RecipeCommandToRecipe;
 import recipewebapp.converters.RecipeToRecipeCommand;
@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author el_le
  * @since 09/11/2021 20:04
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class RecipeServiceIT {
 

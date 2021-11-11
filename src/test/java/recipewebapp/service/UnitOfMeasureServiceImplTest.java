@@ -28,7 +28,7 @@ class UnitOfMeasureServiceImplTest {
     @Mock
     UnitOfMeasureRepository unitOfMeasureRepository;
 
-    @BeforeAll
+    @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 

@@ -1,6 +1,7 @@
 package recipewebapp.service;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import org.mockito.Mock;
@@ -26,7 +27,7 @@ class IngredientServiceImplTest {
 
     private final IngredientToIngredientCommand ingredientToIngredientCommand;
     private final IngredientCommandToIngredient ingredientCommandToIngredient;
-    private final RecipeCommandToRecipe recipeCommandToRecipe;
+
 
     @Mock
     RecipeRepository recipeRepository;
@@ -37,20 +38,15 @@ class IngredientServiceImplTest {
     IngredientService ingredientService;
 
     //init converters
-    public IngredientServiceImplTest(RecipeCommandToRecipe recipeCommandToRecipe) {
-        this.recipeCommandToRecipe = recipeCommandToRecipe;
+    public IngredientServiceImplTest() {
         this.ingredientToIngredientCommand = new IngredientToIngredientCommand(new UnitOfMeasureToUnitOfMeasureCommand());
         this.ingredientCommandToIngredient = new IngredientCommandToIngredient(new UnitOfMeasureCommandToUnitOfMeasure());
     }
 
-    @BeforeAll
+    @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        ingredientService = new IngredientServiceImpl(ingredientToIngredientCommand, ingredientCommandToIngredient, recipeCommandToRecipe, recipeRepository, unitOfMeasureRepository);
-    }
-
-    @Test
-    public void findByRecipeIdAndId() throws Exception {
+        ingredientService = new IngredientServiceImpl(ingredientToIngredientCommand, ingredientCommandToIngredient, recipeRepository, unitOfMeasureRepository);
     }
 
     @Test
