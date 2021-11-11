@@ -1,17 +1,12 @@
 package recipewebapp.service;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import recipewebapp.commands.IngredientCommand;
-import recipewebapp.converters.IngredientCommandToIngredient;
-import recipewebapp.converters.IngredientToIngredientCommand;
-import recipewebapp.converters.UnitOfMeasureCommandToUnitOfMeasure;
-import recipewebapp.converters.UnitOfMeasureToUnitOfMeasureCommand;
+import recipewebapp.converters.*;
 import recipewebapp.domain.Ingredient;
 import recipewebapp.domain.Recipe;
 import recipewebapp.repositories.RecipeRepository;
@@ -31,6 +26,7 @@ class IngredientServiceImplTest {
 
     private final IngredientToIngredientCommand ingredientToIngredientCommand;
     private final IngredientCommandToIngredient ingredientCommandToIngredient;
+    private final RecipeCommandToRecipe recipeCommandToRecipe;
 
     @Mock
     RecipeRepository recipeRepository;
@@ -41,7 +37,8 @@ class IngredientServiceImplTest {
     IngredientService ingredientService;
 
     //init converters
-    public IngredientServiceImplTest() {
+    public IngredientServiceImplTest(RecipeCommandToRecipe recipeCommandToRecipe) {
+        this.recipeCommandToRecipe = recipeCommandToRecipe;
         this.ingredientToIngredientCommand = new IngredientToIngredientCommand(new UnitOfMeasureToUnitOfMeasureCommand());
         this.ingredientCommandToIngredient = new IngredientCommandToIngredient(new UnitOfMeasureCommandToUnitOfMeasure());
     }
@@ -49,7 +46,7 @@ class IngredientServiceImplTest {
     @BeforeAll
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        ingredientService = new IngredientServiceImpl(ingredientToIngredientCommand, ingredientCommandToIngredient, recipeRepository, unitOfMeasureRepository);
+        ingredientService = new IngredientServiceImpl(ingredientToIngredientCommand, ingredientCommandToIngredient, recipeCommandToRecipe, recipeRepository, unitOfMeasureRepository);
     }
 
     @Test
