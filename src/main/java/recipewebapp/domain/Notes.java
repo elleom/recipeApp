@@ -13,6 +13,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @EqualsAndHashCode(exclude = {"recipe"})
+@ToString(exclude = {"recipe"})
 public class Notes {
     @Id
     @Column(name = "id", nullable = false)

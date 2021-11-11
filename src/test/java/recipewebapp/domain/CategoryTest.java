@@ -1,9 +1,7 @@
-package com.lm.domain;
+package recipewebapp.domain;
 
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import recipewebapp.domain.Category;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
