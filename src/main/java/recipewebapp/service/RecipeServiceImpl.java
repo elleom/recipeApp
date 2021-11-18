@@ -6,6 +6,7 @@ import recipewebapp.commands.RecipeCommand;
 import recipewebapp.converters.RecipeCommandToRecipe;
 import recipewebapp.converters.RecipeToRecipeCommand;
 import recipewebapp.domain.Recipe;
+import recipewebapp.exception.NotFoundException;
 import recipewebapp.repositories.RecipeRepository;
 
 import javax.transaction.Transactional;
@@ -46,7 +47,7 @@ public class RecipeServiceImpl implements RecipeService {
         Optional<Recipe> recipeOptional = recipeRepository.findById(l);
 
         if (!recipeOptional.isPresent()) {
-            throw new RuntimeException("Recipe Not Found!");
+            throw new NotFoundException("Recipe Not Found!");
         }
 
         return recipeOptional.get();
