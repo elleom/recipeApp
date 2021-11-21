@@ -4,11 +4,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import recipewebapp.commands.RecipeCommand;
 import recipewebapp.exception.NotFoundException;
 import recipewebapp.service.RecipeService;
+
+import javax.validation.Valid;
 
 /**
  * @author el_le
@@ -19,6 +23,7 @@ import recipewebapp.service.RecipeService;
 @Controller
 public class RecipeController {
 
+    private static final String RECIPE_RECIPEFORM_URL = "recipe/recipeform";
     private final RecipeService recipeService;
 
     public RecipeController(RecipeService recipeService) {
@@ -46,7 +51,15 @@ public class RecipeController {
 
     @PostMapping
     @RequestMapping("recipe")
-    public String saveOrUpdate(@ModelAttribute RecipeCommand command) {
+    public String saveOrUpdate(@Valid @ModelAttribute("recipe") RecipeCommand command, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()){
+            bindingResult.getAllErrors().forEach( objectError -> {
+                log.debug(objectError.toString());
+            });
+            return RECIPE_RECIPEFORM_URL;
+        }
+
         RecipeCommand savedCommand = recipeService.saveRecipeCommand(command);
         return "redirect:/recipe/" + savedCommand.getId() + "/show";
     }
@@ -69,14 +82,6 @@ public class RecipeController {
         return modelAndView;
     }
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(NumberFormatException.class)
-    public ModelAndView handleWrongInput(Exception exception) {
-        log.error("Handling bad request");
-        log.error(exception.getMessage());
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/error/400");
-        modelAndView.addObject("exception", exception);
-        return modelAndView;
-    }
+
+
 }
