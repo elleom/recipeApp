@@ -36,7 +36,7 @@ public class RecipeCommand {
     private Integer cookTime;
 
     @Min(1)
-    @Max(10)
+    @Max(100)
     private Integer servings;
     private String source;
 
@@ -45,9 +45,10 @@ public class RecipeCommand {
 
     @NotBlank
     private String directions;
+
     private Set<IngredientCommand> ingredients = new HashSet<>();
+    private Byte[] image;
     private Difficulty difficulty;
     private NotesCommand notes;
     private Set<CategoryCommand> categories = new HashSet<>();
-    private Byte[] image;
 }
