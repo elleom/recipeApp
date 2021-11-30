@@ -3,6 +3,8 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
+orbs:
+  codecov: codecov/codecov@1.0.2
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
@@ -14,7 +16,7 @@ jobs:
     # Be sure to update the Docker image tag below to openjdk version of your application.
     # A list of available CircleCI Docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/openjdk
     docker:
-      - image: cimg/openjdk:11.0-node
+      - image: cimg/openjdk:8.0.292-node
 
     environment:
       # Customize the JVM maximum heap limit
@@ -37,6 +39,9 @@ jobs:
       - store_test_results:
           path: target/surefire-reports
 
+      - codecov/upload:
+          file: report.xml
+          token: $CODECOV_TOKEN
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
