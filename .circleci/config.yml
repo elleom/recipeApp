@@ -31,7 +31,7 @@ jobs:
 
       - run:
           name: Build
-          command: mvn -B -DskipTests clean package
+          command: mvn -B clean package
 
       # Then run your tests!
       - run: mvn integration-test
