@@ -43,9 +43,9 @@ jobs:
           file: report.xml
           token: $CODECOV_TOKEN
 
-      run: mvn cobertura:cobertura
+      - run: mvn cobertura:cobertura
 
-      run: bash <(curl -s https://codecov.io/bash)
+      - run: bash <(curl -s https://codecov.io/bash)
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
